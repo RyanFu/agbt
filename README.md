@@ -46,6 +46,18 @@ apply plugin: 'agbt'
 
 [![bintray](https://img.shields.io/badge/2016.01.13-com.github.yanglw:agbt:0.1-brightgreen.svg)](https://bintray.com/yanglw/maven/agbt/view) 
 
+- 执行 Gradle 命令
+
+```
+gradle collect
+```
+
+`collect` 命令即可用来执行插件任务。也可以针对不同的维度进行进行 `collect` 。本插件支持 android 插件中的 buildTypes 和 productFlavors 的维度以及二者的组合维度。
+
+例如，只进行 debug 任务，可以执行 `gradle collectDebug` 命令。
+
+本插件的任务集为 android 插件中 `assemble` 的任务集的一个扩展，形成了一个 `collect` 任务集。
+
 ## 功能配置
 
 ### 自动升级版本信息
