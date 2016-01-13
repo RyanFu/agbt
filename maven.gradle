@@ -1,0 +1,110 @@
+apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = POM_GROUP
+version = POM_VERSION
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_API_KEY
+
+    configurations = ['archives']
+    pkg {
+        repo = BINTRAY_PKG_REPO
+        name = BINTRAY_PKG_NAME
+        desc = POM_DESC
+        publish = true
+
+        version {
+            name = POM_VERSION
+        }
+    }
+}
+
+def isAndroidProject = project.getPlugins().hasPlugin('com.android.application') ||
+        project.getPlugins().hasPlugin('com.android.library')
+
+install {
+    repositories.mavenInstaller {
+        if (isAndroidProject) {
+            configuration = configurations.archives
+        }
+
+        pom.groupId = POM_GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = POM_VERSION
+
+        pom.project {
+            name POM_NAME
+            packaging POM_PACKAGING
+            description POM_DESC
+            url POM_SITE_URL
+
+            scm {
+                url POM_SITE_URL
+                connection POM_SCM_CONNECTION
+                developerConnection POM_SCM_DEV_CONNECTION
+            }
+
+            licenses {
+                license {
+                    name POM_LICENSE
+                    url POM_LICENSE_URL
+                }
+            }
+
+            developers {
+                developer {
+                    id DEVELOPER_ID
+                    name DEVELOPER_NAME
+                    email DEVELOPER_EMAIL
+                }
+            }
+        }
+    }
+}
+
+if (isAndroidProject) {
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.source
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.source
+    }
+} else {
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+}
+
+artifacts {
+    if (isAndroidProject) {
+        archives androidSourcesJar
+        archives androidJavadocsJar
+    } else {
+        archives sourcesJar
+        archives javadocJar
+    }
+}
