@@ -1,7 +1,7 @@
 package com.github.yanglw.agbt.tool.collect.task
 
 import com.github.yanglw.agbt.tool.collect.task.collector.Collector
-import com.github.yanglw.agbt.tool.output.info.BuildInfoOutputManager
+import com.github.yanglw.agbt.tool.collect.output.info.BuildInfoOutputManager
 import com.github.yanglw.agbt.util.ProjectUtil
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
@@ -13,12 +13,21 @@ import org.gradle.api.tasks.TaskAction
  * Created by yanglw on 2015-12-8.
  */
 class CollectTask extends DefaultTask {
+    /** 标记是否执行了 collect 任务。 */
+    public static boolean isRunCollectTask = false;
+
     Map info
     def currentVariant
     Collector collector
 
     CollectTask() {
         setGroup(ProjectUtil.GRADLE_TASK_GROUP)
+    }
+
+    /** 标记执行了自定义任务。 */
+    @TaskAction
+    void run() {
+        isRunCollectTask = true
     }
 
     /** 复制生成物文件，例如 apk 、aar 文件。 */

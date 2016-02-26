@@ -2,6 +2,7 @@ package com.github.yanglw.agbt.tool.collect.extension
 
 import com.github.yanglw.agbt.action.BuildActionGroup
 import com.github.yanglw.agbt.tool.collect.action.CollectAction
+import com.github.yanglw.agbt.tool.collect.output.extension.WriterExtension
 import org.gradle.api.Project
 
 /**
@@ -24,5 +25,7 @@ class BeeExtension {
         extensions.configs = configs
         CollectAction collectAction = new CollectAction(project, defaultConfig, configs)
         group.add(collectAction)
+
+        extensions.create("writer", WriterExtension, project, group)
     }
 }

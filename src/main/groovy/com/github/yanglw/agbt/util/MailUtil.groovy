@@ -1,6 +1,6 @@
 package com.github.yanglw.agbt.util
 
-import com.github.yanglw.agbt.tool.output.extension.MailExtension
+import com.github.yanglw.agbt.tool.collect.output.extension.MailExtension
 
 import javax.mail.Message
 import javax.mail.Multipart

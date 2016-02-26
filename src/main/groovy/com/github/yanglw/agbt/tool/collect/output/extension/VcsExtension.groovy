@@ -1,7 +1,7 @@
-package com.github.yanglw.agbt.tool.output.extension
+package com.github.yanglw.agbt.tool.collect.output.extension
 
 import com.github.yanglw.agbt.action.BuildActionGroup
-import com.github.yanglw.agbt.tool.output.action.VcsAction
+import com.github.yanglw.agbt.tool.collect.output.action.VcsAction
 import org.gradle.api.Project
 
 /**

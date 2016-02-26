@@ -1,4 +1,4 @@
-package com.github.yanglw.agbt.tool.output.vcs
+package com.github.yanglw.agbt.tool.collect.output.vcs
 
 import com.github.yanglw.agbt.util.ShellUtil
 

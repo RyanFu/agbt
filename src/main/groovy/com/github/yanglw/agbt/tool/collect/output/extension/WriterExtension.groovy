@@ -1,10 +1,10 @@
-package com.github.yanglw.agbt.tool.output.extension
+package com.github.yanglw.agbt.tool.collect.output.extension
 
 import com.github.yanglw.agbt.action.BuildActionGroup
 import com.github.yanglw.agbt.tool.collect.task.collector.Collector
-import com.github.yanglw.agbt.tool.output.MailOutput
-import com.github.yanglw.agbt.tool.output.Output
-import com.github.yanglw.agbt.tool.output.action.OutputAction
+import com.github.yanglw.agbt.tool.collect.output.MailOutput
+import com.github.yanglw.agbt.tool.collect.output.Output
+import com.github.yanglw.agbt.tool.collect.output.action.OutputAction
 import com.github.yanglw.agbt.util.FileUtil
 import com.github.yanglw.agbt.util.ProjectUtil
 import com.github.yanglw.agbt.util.QRCodeUtil
@@ -59,10 +59,10 @@ class WriterExtension {
      * 信息输出者。
      * <p>
      *
-     * 如果用户没有设置新的输出对象，则使用默认的 {@link MailOutput} 对象。<br/>
+     * 如果用户没有设置新的输出对象，则使用默认的 {@link com.github.yanglw.agbt.tool.collect.output.MailOutput} 对象。<br/>
      * 如果用户设置了新的输出对象，则 {@link #mail} 和 {@link #infoBuilder} 对象将不再有意义。
      * @see #getOutput()
-     * @see MailOutput
+     * @see com.github.yanglw.agbt.tool.collect.output.MailOutput
      */
     Output output
     MailExtension mail
@@ -157,7 +157,7 @@ class WriterExtension {
         }
     }
 
-    /** 获取输出对象。如果用户没有设置新的输出对象，则使用默认的 {@link MailOutput} 对象。 */
+    /** 获取输出对象。如果用户没有设置新的输出对象，则使用默认的 {@link com.github.yanglw.agbt.tool.collect.output.MailOutput} 对象。 */
     Output getOutput() {
         if (output == null) {
             return new MailOutput(this)

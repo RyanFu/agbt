@@ -1,10 +1,11 @@
-package com.github.yanglw.agbt.tool.output.action
+package com.github.yanglw.agbt.tool.collect.output.action
 
 import com.github.yanglw.agbt.action.BuildAction
+import com.github.yanglw.agbt.tool.collect.task.CollectTask
 import com.github.yanglw.agbt.tool.collect.task.collector.Collector
-import com.github.yanglw.agbt.tool.output.extension.VcsExtension
-import com.github.yanglw.agbt.tool.output.info.BuildInfoOutputManager
-import com.github.yanglw.agbt.tool.output.vcs.Vcs
+import com.github.yanglw.agbt.tool.collect.output.extension.VcsExtension
+import com.github.yanglw.agbt.tool.collect.output.info.BuildInfoOutputManager
+import com.github.yanglw.agbt.tool.collect.output.vcs.Vcs
 import com.github.yanglw.agbt.util.VcsUtil
 import org.gradle.api.Project
 
@@ -53,9 +54,11 @@ class VcsAction implements BuildAction {
 
     @Override
     void onFinish() {
-        // 存储本次编译的版本信息。
-        if (vcsDelegate != null && vcs.lastCodeSavePath) {
-            new File(vcs.lastCodeSavePath).write(vcsDelegate.getCommitCode())
+        if (CollectTask.isRunCollectTask) {
+            // 存储本次编译的版本信息。
+            if (vcsDelegate != null && vcs.lastCodeSavePath) {
+                new File(vcs.lastCodeSavePath).write(vcsDelegate.getCommitCode())
+            }
         }
     }
 }

@@ -2,7 +2,6 @@ package com.github.yanglw.agbt.extension
 
 import com.github.yanglw.agbt.action.BuildActionGroup
 import com.github.yanglw.agbt.tool.collect.extension.BeeExtension
-import com.github.yanglw.agbt.tool.output.extension.WriterExtension
 import com.github.yanglw.agbt.tool.version.extension.VersionExtension
 import org.gradle.api.Project
 
@@ -17,8 +16,6 @@ class ToolPluginExtension {
     final BeeExtension bee
     /** apk 版本控制。 */
     final VersionExtension ver
-    /** 信息输出。 */
-    final WriterExtension writer
 
     ToolPluginExtension(Project project, BuildActionGroup actions) {
         this.project = project
@@ -26,6 +23,5 @@ class ToolPluginExtension {
 
         this.bee = extensions.create("bee", BeeExtension, project, actions)
         this.ver = extensions.create("ver", VersionExtension, project, actions)
-        this.writer = extensions.create("writer", WriterExtension, project, actions)
     }
 }

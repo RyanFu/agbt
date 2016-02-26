@@ -1,4 +1,4 @@
-package com.github.yanglw.agbt.tool.output
+package com.github.yanglw.agbt.tool.collect.output
 
 /**
  * <p>

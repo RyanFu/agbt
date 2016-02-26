@@ -1,4 +1,4 @@
-package com.github.yanglw.agbt.tool.output.extension
+package com.github.yanglw.agbt.tool.collect.output.extension
 
 import com.github.yanglw.agbt.util.FileUtil
 import com.github.yanglw.agbt.util.MailUtil

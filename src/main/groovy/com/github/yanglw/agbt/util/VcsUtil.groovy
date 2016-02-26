@@ -1,9 +1,9 @@
 package com.github.yanglw.agbt.util
 
-import com.github.yanglw.agbt.tool.output.extension.VcsExtension
-import com.github.yanglw.agbt.tool.output.vcs.GitDelegate
-import com.github.yanglw.agbt.tool.output.vcs.SVNDelegate
-import com.github.yanglw.agbt.tool.output.vcs.Vcs
+import com.github.yanglw.agbt.tool.collect.output.extension.VcsExtension
+import com.github.yanglw.agbt.tool.collect.output.vcs.GitDelegate
+import com.github.yanglw.agbt.tool.collect.output.vcs.SVNDelegate
+import com.github.yanglw.agbt.tool.collect.output.vcs.Vcs
 import org.gradle.api.Project
 
 /**

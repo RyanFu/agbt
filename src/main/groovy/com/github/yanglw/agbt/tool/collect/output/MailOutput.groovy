@@ -1,6 +1,6 @@
-package com.github.yanglw.agbt.tool.output
+package com.github.yanglw.agbt.tool.collect.output
 
-import com.github.yanglw.agbt.tool.output.extension.WriterExtension
+import com.github.yanglw.agbt.tool.collect.output.extension.WriterExtension
 import com.github.yanglw.agbt.util.MailUtil
 
 import javax.mail.BodyPart
