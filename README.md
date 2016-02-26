@@ -44,7 +44,7 @@ apply plugin: 'agbt'
 
 最新版本：
 
-[![bintray](https://img.shields.io/badge/2016.01.13-com.github.yanglw:agbt:0.1.1-brightgreen.svg)](https://bintray.com/yanglw/maven/agbt/view) 
+[![bintray](https://img.shields.io/badge/2016.02.26-com.github.yanglw:agbt:0.2.0-brightgreen.svg)](https://bintray.com/yanglw/maven/agbt/view) 
 
 - 执行 Gradle 命令
 
