@@ -29,7 +29,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.github.yanglw:agbt:0.1"
+        classpath "com.github.yanglw:agbt:0.2"
     }
 }
 ```
@@ -331,36 +331,40 @@ tool {
 apply plugin: 'agbt'
 
 tool {
-    writer {
-        mail {
-            mailProsPath
-            charset
-            host
-            port
-            auth
-            user
-            password
-            to
-            cc
-            bcc
-            personal
-            subjectMather
-            appName
-            timeFormat
+    bee {
+        writer {
+            mail {
+                mailProsPath
+                charset
+                host
+                port
+                auth
+                user
+                password
+                to
+                cc
+                bcc
+                personal
+                subjectMather
+                appName
+                timeFormat
+            }
+
+            vcs {
+                lastCodeSavePath
+                userName
+                password
+            }
+
+            output
+
+            infoBuilder
         }
-
-        vcs {
-            lastCodeSavePath
-            userName
-            password
-        }
-
-        output
-
-        infoBuilder
     }
 }
 ```
+
+**只有执行了 collect 系列命令信息输出功能才会启动。**
 
 默认的，本插件使用邮件的方式，进行编译信息的输出，可以在 `mail` 字段中设置邮件发送服务器的信息。`vcs` 用于获取当前项目的版本控制的信息。`output` 用于输出信息。当你使用默认的邮件输出的方式输出信息是，可以 `infoBuilder` 设置邮件内容。以下是详细的说明：
 
@@ -455,22 +459,23 @@ tool {
             repRoot 'e:/outputs/'
             defaultCollectorEnable true
         }
-    }
-
-    mail {
-        host 'smtp.126.com'
-        user '@126.com'
-        password ''
-        personal '打包服务器'
-        to '@126.com'
-    }
-    infoBuilder {List<Map> allInfo ->
-        getDefaultInfoBuilder().call(allInfo)
-        addText("<p>测试</p>")
-        addImage(new File('e:/387546.jpg'), 'jpg')
-        addQRCodeImage('添加二维码')
-        addKeyValueTextWithLF('hello :', 'world')
-        getMultiPart()
+        writer {
+            mail {
+                host 'smtp.126.com'
+                user '@126.com'
+                password ''
+                personal '打包服务器'
+                to '@126.com'
+            }
+            infoBuilder {List<Map> allInfo ->
+                getDefaultInfoBuilder().call(allInfo)
+                addText("<p>测试</p>")
+                addImage(new File('e:/387546.jpg'), 'jpg')
+                addQRCodeImage('添加二维码')
+                addKeyValueTextWithLF('hello :', 'world')
+                getMultiPart()
+            }
+        }
     }
 }
 ```
